@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TM PRO - Download Video Editor APK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0D0D0F;
+            --card-bg: rgba(25, 25, 29, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-cyan: #06B6D4;
+            --accent-purple: #8B5CF6;
+            --accent-green: #10B981;
+            --accent-green-hover: #059669;
+            --accent-yellow: #FFE600;
+            --text-primary: #FFFFFF;
+            --text-secondary: #9E9E9E;
+            --text-muted: #666672;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glow Background */
+        .ambient-glow {
+            position: absolute;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(6, 182, 212, 0.15) 50%, rgba(13, 13, 15, 0) 75%);
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 40px 24px;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header / Navbar */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #6366F1, #06B6D4);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .brand-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #ffffff;
+        }
+
+        .brand-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        .brand-title span {
+            color: var(--accent-cyan);
+            font-size: 13px;
+            background: rgba(6, 182, 212, 0.15);
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .badge-verified {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--accent-green);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 650px;
+            margin-bottom: 40px;
+        }
+
+        .app-badge-icon {
+            width: 110px;
+            height: 110px;
+            background: #19191D;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(6, 182, 212, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-badge-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 26px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A5B4FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        /* App Meta Pill Bar */
+        .meta-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 36px;
+            background: rgba(25, 25, 30, 0.6);
+            border: 1px solid var(--card-border);
+            padding: 10px 24px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .meta-item strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .meta-divider {
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Big Green DOWNLOAD APK Button */
+        .download-btn-container {
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .btn-download-apk {
+            width: 100%;
+            padding: 20px 32px;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-download-apk::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: skewX(-25deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            100% {
+                left: 150%;
+            }
+        }
+
+        .btn-download-apk:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(16, 185, 129, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            background: linear-gradient(135deg, #14c78d 0%, #06a575 100%);
+        }
+
+        .btn-download-apk:active {
+            transform: translateY(1px) scale(0.99);
+        }
+
+        .btn-download-apk svg {
+            width: 28px;
+            height: 28px;
+            fill: #ffffff;
+        }
+
+        .download-subtext {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Features Grid */
+        .features-section {
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+
+        .feature-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .feature-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Installation Instructions */
+        .instructions-card {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(12px);
+        }
+
+        .instructions-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .step-num {
+            width: 32px;
+            height: 32px;
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: var(--accent-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-text h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .step-text p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            .btn-download-apk {
+                font-size: 18px;
+                padding: 18px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <a href="#" class="brand-logo">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4zM8 17l4.5-3.5L8 10v7z"/></svg>
+                </div>
+                <div class="brand-title">TM PRO <span>STUDIO</span></div>
+            </a>
+            <div class="badge-verified">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Safe & Verified APK
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="app-badge-icon">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="#06B6D4"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/></svg>
+            </div>
+            <h1>TM PRO Video Editor</h1>
+            <p>The ultimate mobile video editing studio with CapCut-style Auto Captions (Bangla & English), interactive multi-track timeline, instant trimmer, and professional color grading.</p>
+        </div>
+
+        <!-- Meta Bar -->
+        <div class="meta-bar">
+            <div class="meta-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#9E9E9E"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                Version: <strong>1.0.0</strong>
+            </div>
+            <div class="meta-divider">•</div>
+            <div class="meta-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#9E9E9E"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                Size: <strong>25 MB</strong>
+            </div>
+            <div class="meta-divider">•</div>
+            <div class="meta-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#9E9E9E"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                Requires: <strong>Android 8.0+</strong>
+            </div>
+            <div class="meta-divider">•</div>
+            <div class="meta-item">
+                <span style="color: var(--accent-green);">●</span> Updated: <strong>Latest Release</strong>
+            </div>
+        </div>
+
+        <!-- Big Green DOWNLOAD APK Button -->
+        <div class="download-btn-container">
+            <a href="app-debug.apk" download="TM_PRO_Video_Editor_v1.0.0.apk" class="btn-download-apk" id="downloadBtn">
+                <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                DOWNLOAD APK
+            </a>
+            <div class="download-subtext">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#10B981"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                Direct APK file (v1.0.0 • 25MB) • 100% Virus Free
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-section">
+            <h2 class="section-title">Core Pro Editing Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box" style="background: rgba(255, 230, 0, 0.15); color: #FFE600;">💬</div>
+                    <h3>CapCut Auto Captions</h3>
+                    <p>Instant speech transcription supporting Bangla (বাংলা) and English with 12+ viral templates and word-by-word active animation.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box" style="background: rgba(6, 182, 212, 0.15); color: #06B6D4;">✂️</div>
+                    <h3>Multi-Track Timeline</h3>
+                    <p>Split video clips into segments, trim start & end points with millisecond precision, and scrub smoothly in real time.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box" style="background: rgba(139, 92, 246, 0.15); color: #8B5CF6;">🎨</div>
+                    <h3>12+ Color Filters</h3>
+                    <p>Cinematic Teal & Orange, Moody Noir, Golden Sunset, Cyberpunk Neon, Vintage 90s, and Sepia grading presets.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box" style="background: rgba(236, 72, 153, 0.15); color: #EC4899;">⚡</div>
+                    <h3>Speed Control & Audio</h3>
+                    <p>Adjust playback speed from 0.25x slow motion to 3.0x fast motion with background beats and volume sliders.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box" style="background: rgba(16, 185, 129, 0.15); color: #10B981;">🖼️</div>
+                    <h3>Gallery Media Import</h3>
+                    <p>Multi-select images and videos from your phone gallery with an intuitive responsive media grid selector.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box" style="background: rgba(245, 158, 11, 0.15); color: #F59E0B;">📐</div>
+                    <h3>Multi-Ratio Export</h3>
+                    <p>Export in 16:9 (YouTube), 9:16 (Shorts/TikTok/Reels), 1:1 (Square), and 4:5 (Instagram) up to 4K 60FPS.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Install Steps -->
+        <div class="instructions-card">
+            <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#06B6D4"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                How to Install TM PRO APK on Android
+            </h2>
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <h4>Download the APK file</h4>
+                        <p>Click the big green "DOWNLOAD APK" button above to download the 25MB APK package to your phone.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <h4>Enable "Install Unknown Apps"</h4>
+                        <p>If prompted by your browser, go to Settings &rarr; allow "Install unknown apps" from Chrome or your file manager.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <h4>Tap to Install & Launch</h4>
+                        <p>Open the downloaded <code>TM_PRO_Video_Editor_v1.0.0.apk</code> from your notifications or Downloads folder and tap Install.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 <strong>TM PRO Studio</strong>. All rights reserved. Professional Video Editor for Android.</p>
+        </footer>
+    </div>
+</body>
+</html>

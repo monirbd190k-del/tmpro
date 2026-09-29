@@ -1,0 +1,6 @@
+{
+  "name": "TM PRO",
+  "description": "Professional video editor with real timeline, video trimmer, speed control, filters, aspect ratio cropping, and project export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
